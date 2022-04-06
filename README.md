@@ -51,11 +51,11 @@ The simplest technique to identify important regression features is to rank them
 
 The fundamental difference between the two correlation coefficients is that the Pearson coefficient works with a linear relationship between the two variables whereas the Spearman coefficient works with monotonic relationships (the variables tend to change together, but not necessarily at a constant rate). The Spearman correlation coefficient is based on the ranked values for each variable rather than the raw data.
 
+![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/linear1.png)
 
-<a name="app"></a>
-##### 3. Applications
-*  Synthetic data set
-
+<a name="pca"></a>
+##### 3. PCA
+As a reminder, each principal component is a unit vector that points in the direction of the highest variance (after accounting for the variance captured by earlier principal components, which means PC1 always captures the feature that has the highest variance). The further a weight is from zero, the more the principal component is in the direction of the corresponding feature. If two features have large weights of the same sign (both positive or both negative), then increases in one tend to be associated with increases in the other. In contrast, features with different signs can be expected to show a negative correlation: increases in one variable should result in a decrease in the other.
 ![alt test](https://raw.githubusercontent.com/victorlifan/kmeans/main/img/1.png)
 
 * Multi-dimension data (Circle data 500*2)
