@@ -124,7 +124,8 @@ Here I bootstrapped 1000 times and collected permutation feature importance in t
 In order to perform a hypothesis test, we need a null distribution for comparison purposes. To bootstrap, I repeatedly shuffling target y and compute feature importances. Hypothesis:
 
 ![equation](https://latex.codecogs.com/svg.image?H_{0}:&space;a&space;=&space;b)
-[equation](https://latex.codecogs.com/svg.image?H_{a}:&space;a\neq&space;&space;&space;b)
+
+![equation](https://latex.codecogs.com/svg.image?H_{a}:&space;a\neq&space;&space;&space;b)
 
 Where:
 
@@ -135,7 +136,13 @@ Where:
 ![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/var2.png)
 ![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/var3.png)
 
+<a name="class"></a>
+## DescrWine quality Data(classification)iption
 
+![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/var2.png)
+![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/var2.png)
+![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/var2.png)
+![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/var2.png)
 
 <a name="Dataset"></a>
 ## Dataset
