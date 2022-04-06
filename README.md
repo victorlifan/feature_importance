@@ -56,49 +56,16 @@ The fundamental difference between the two correlation coefficients is that the 
 <a name="pca"></a>
 ##### 3. PCA
 As a reminder, each principal component is a unit vector that points in the direction of the highest variance (after accounting for the variance captured by earlier principal components, which means PC1 always captures the feature that has the highest variance). The further a weight is from zero, the more the principal component is in the direction of the corresponding feature. If two features have large weights of the same sign (both positive or both negative), then increases in one tend to be associated with increases in the other. In contrast, features with different signs can be expected to show a negative correlation: increases in one variable should result in a decrease in the other.
-![alt test](https://raw.githubusercontent.com/victorlifan/kmeans/main/img/1.png)
 
-* Multi-dimension data (Circle data 500*2)
+> Note: Before we apply dimensionality reduction techniques to the data, we need to perform feature scaling so that the principal component vectors are not influenced by the natural differences in scale for features. This step was performed during data preprocessing.
 
-![alt test](https://raw.githubusercontent.com/victorlifan/kmeans/main/img/multi1.png)
-![alt test](https://raw.githubusercontent.com/victorlifan/kmeans/main/img/multi2.png)
+![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/pca3.png)
 
-> As you can see, Kmeans performs poorly on disjointed and nested structures. To rescue, I will introduce spectral clustering by using RF and Kmeans together in the Advanced topic section.
 
-* Breast cancer
+<a name="mrmr"></a>
+##### 4. mRMR (Spearman's rank coefficient for the function `I`)
 
-    * Without scaling X꞉
-
-![alt test](https://raw.githubusercontent.com/victorlifan/kmeans/main/img/bc1.png)
-
-    * With scaled X
-![alt test](https://raw.githubusercontent.com/victorlifan/kmeans/main/img/bc2.png)
-
-* Image compression
-    * Grayscale
-        * Original:
-![alt test](https://raw.githubusercontent.com/victorlifan/kmeans/main/img/north-africa-1940s-grey.png)
-        * Kmeans++ copresion:
-![alt test](https://raw.githubusercontent.com/victorlifan/kmeans/main/img/gray_km.png)
-
-    * Color
-        * Original:
-![alt test](https://raw.githubusercontent.com/victorlifan/kmeans/main/img/parrt-vancouver.jpg)
-        * Kmeans++ copresion:
-![alt test](https://raw.githubusercontent.com/victorlifan/kmeans/main/img/color_km.jpg)
-
-<a name="rf+km"></a>
-##### 4. Advanced topic: RF + Kmeans
-
-> Procedure:
-
-1. RF ‘group’ similar data points.
-
-2. Construct frequency (similarity) matrix
-
-3. Feed similarity matrix to SpectralClustering
-
-> Test on circle data (sklearn vs. RF+Kmeans)
+In an effort to deal with codependencies, data analysis techniques rank features not just by relevance (correlation with the response variable) but also by low redundancy, the amount of information shared between codependent features, which is the idea behind minimal-redundancy-maximal-relevance (mRMR):
 
 ![alt test](https://raw.githubusercontent.com/victorlifan/kmeans/main/img/vs.png)
 
