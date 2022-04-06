@@ -65,16 +65,38 @@ As a reminder, each principal component is a unit vector that points in the dire
 <a name="mrmr"></a>
 ##### 4. mRMR (Spearman's rank coefficient for the function `I`)
 
-In an effort to deal with codependencies, data analysis techniques rank features not just by relevance (correlation with the response variable) but also by low redundancy, the amount of information shared between codependent features, which is the idea behind minimal-redundancy-maximal-relevance (mRMR):
+In an effort to deal with codependencies, data analysis techniques rank features not just by relevance (correlation with the response variable) but also by low redundancy, the amount of information shared between codependent features, which is the idea behind minimal-redundancy-maximal-relevance (mRMR) - the higher the feature correlated with others, the low the mRMR score will be:
 
-![alt test](https://raw.githubusercontent.com/victorlifan/kmeans/main/img/vs.png)
+![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/mrmr1.png)
 
-<a name='mf'></a>
-##### 5. Limitations
-* Randomness in RF will sometimes result in unexpected cluster labels (accuracy is not as steady).
+![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/mrmr2.png)
 
-* Kmeans++ only considers picking the furthest point to its previous centroid. Take k=3 as an example, as a consequence, the 1st and 3rd controls can sometimes be quite close to each other. Is there a way to consider all the previous centroids and pick the furthest point from all the previous centroids? How do we even define the ‘minimum distance’ since each centroid has its own furthest points, one point can't be the furthest to multiple centroids?
+<a name='drp'></a>
+##### 5. Drop column importance
+> Procedure:
 
+1. First, we compute the validation metrics for the model trained on all features. This is our baseline.
+2. Drop column from the training set, one at a time.
+3. Retrain model.
+4. Compute validation metric set (OOB score in this case).
+5. The importance score is the change in metric
+
+![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/mrmr2.png)
+
+<a name='per'></a>
+##### 6. Permutation importance
+
+To work around this codependent problem, we can break the potential connection between features by shuffling the record in each feature. Further, this method is much more efficient than drop column importance since we don't need to retrain the model for each permutation, we just have to re-run the permutated test samples through the already-trained model.
+
+> Procedure:
+
+1. Compute validation metric for a model trained on all features.
+2. Permute column in the validation set.
+3. Compute validation metric set.
+4. The importance score is the change in metric.
+> Note: metric used {regression: $R^2$, classification: accuracy}
+
+![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/mrmr2.png)
 
 <a name="Dataset"></a>
 ## Dataset
