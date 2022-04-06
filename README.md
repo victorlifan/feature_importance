@@ -109,13 +109,16 @@ According to the three predicting models I tried, PCA underperformed all other a
 > Sanity: Compare permutation importance to shap feature importance:
 
 
-![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/com3.png)
+![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/shap.png)
 
 <a name="auto"></a>
 ## The automatic feature selection algorithm
 For this experiment, there are eight features we selected to keep. We stopped at eight because when the algorithm dropped the number of features to seven, there is a clear spike in MSE loss.
 
-![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/com3.png)
+![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/select.png)
+
+<a name="var"></a>
+## Variance and empirical p-values for feature importances
 
 
 <a name="Dataset"></a>
