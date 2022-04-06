@@ -94,7 +94,7 @@ To work around this codependent problem, we can break the potential connection b
 2. Permute column in the validation set.
 3. Compute validation metric set.
 4. The importance score is the change in metric.
-> Note: metric used {regression: $R^2$, classification: accuracy}
+> Note: metric used {regression: ![equation](https://latex.codecogs.com/svg.image?R^{2}), classification: accuracy}
 
 ![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/per1.png)
 
@@ -113,12 +113,28 @@ According to the three predicting models I tried, PCA underperformed all other a
 
 <a name="auto"></a>
 ## The automatic feature selection algorithm
-For this experiment, there are eight features we selected to keep. We stopped at eight because when the algorithm dropped the number of features to seven, there is a clear spike in MSE loss.
+Recall that permutation only measures the magnitude of metric change, since I added a Gaussian noise column, any column’s feature importance below the noise column, we can just simply drop. Of course, we will drop the noise column as well.
 
 ![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/select.png)
 
 <a name="var"></a>
 ## Variance and empirical p-values for feature importances
+Here I bootstrapped 1000 times and collected permutation feature importance in these 1000 runs. Barplot shows the error bars with respect to a 95% confidence interval (two standard deviations). But since I ran 1000 bootstrap, the error bars were squashed into very condensed intervals.
+![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/var1.png)
+In order to perform a hypothesis test, we need a null distribution for comparison purposes. To bootstrap, I repeatedly shuffling target y and compute feature importances. Hypothesis:
+
+![equation](https://latex.codecogs.com/svg.image?H_{0}:&space;a&space;=&space;b)
+[equation](https://latex.codecogs.com/svg.image?H_{a}:&space;a\neq&space;&space;&space;b)
+
+Where:
+
+* a = calculated permutation importance
+* b = random feature importance
+
+
+![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/var2.png)
+![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/var3.png)
+
 
 
 <a name="Dataset"></a>
