@@ -101,14 +101,21 @@ To work around this codependent problem, we can break the potential connection b
 
 <a name="com"></a>
 ## Comparing strategies
-> Procedure:
+According to the three predicting models I tried, PCA underperformed all other algorithms in terms of the number of top k most important features needed. On the other hand, the ‘Permutation’ approach shows a really promising result: even with the same number of topmost important features, permutation always has the lowest MAE.
 
-1. Collect all 6 algorithms’ feature importances, and rank the F1 by absolute value correspondingly.
-2. Start from the least important feature, drop one feature at a time across all six algorithms’ feature importance (FI) rank:
-	1. Feed the rest of the features across all six algorithms to the same predicting model. I used OLS, RF, and XGBoost models for comparison. On top of that, I utilized the 5-fold cross-validation method to minimize the effect of any randomness. This way, we are setting six different FI ranks on the same starting point.
-	2. Predict target y and record the CV loss (here I used MAE).
-3. Simply compare the CV loss across all six algorithms when they have the amount of ‘top k most importance features’ accordingly.
+![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/com1.png)
+![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/com2.png)
+![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/com3.png)
+> Sanity: Compare permutation importance to shap feature importance:
 
+
+![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/com3.png)
+
+<a name="auto"></a>
+## The automatic feature selection algorithm
+For this experiment, there are eight features we selected to keep. We stopped at eight because when the algorithm dropped the number of features to seven, there is a clear spike in MSE loss.
+
+![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/com3.png)
 
 
 <a name="Dataset"></a>
