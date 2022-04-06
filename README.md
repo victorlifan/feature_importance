@@ -81,7 +81,7 @@ In an effort to deal with codependencies, data analysis techniques rank features
 4. Compute validation metric set (OOB score in this case).
 5. The importance score is the change in metric
 
-![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/mrmr2.png)
+![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/drop1.png)
 
 <a name='per'></a>
 ##### 6. Permutation importance
@@ -96,7 +96,20 @@ To work around this codependent problem, we can break the potential connection b
 4. The importance score is the change in metric.
 > Note: metric used {regression: $R^2$, classification: accuracy}
 
-![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/mrmr2.png)
+![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/per1.png)
+
+
+<a name="com"></a>
+## Comparing strategies
+> Procedure:
+
+1. Collect all 6 algorithms’ feature importances, and rank the F1 by absolute value correspondingly.
+2. Start from the least important feature, drop one feature at a time across all six algorithms’ feature importance (FI) rank:
+	1. Feed the rest of the features across all six algorithms to the same predicting model. I used OLS, RF, and XGBoost models for comparison. On top of that, I utilized the 5-fold cross-validation method to minimize the effect of any randomness. This way, we are setting six different FI ranks on the same starting point.
+	2. Predict target y and record the CV loss (here I used MAE).
+3. Simply compare the CV loss across all six algorithms when they have the amount of ‘top k most importance features’ accordingly.
+
+
 
 <a name="Dataset"></a>
 ## Dataset
