@@ -6,40 +6,42 @@ Feature Importance and Feature Selection with Statistical Methods
 ## Table of Contents
 1. [Description](#description)
 2. [Workflow](#Workflow)
-	1. [Kmeans](#km)
-	2. [Kmeans ++](#km+)
-	3. [Applications](#app)
-	4. [Advanced topic: RF + Kmeans](#rf+km)
-	5. [Limitations](#mf)
-3. [Dataset](#Dataset)
-4. [About](#About)
-5. [References](#ref)
+   1. Importance strategies working directly from the data
+       1. [Spearman's rank correlation coefficient](#ssrc)
+       2. [Linear coef featimp](#lcf)
+       2. [PCA](#pca)
+       3. [mRMR](#mrmr)
+   2. [Model-based importance strategies](#model)
+       1. [Drop column importance](#drp)
+       2. [Permutation importance](#per)
+7. [Comparing strategies](#com)
+8. [Automatic feature selection algorithm](#auto)
+9. [Variance and empirical p-values for feature importances](#var)
+10. [Wine quality Data(classification)](#class)
+11. [Dataset](#Dataset)
+12. [About](#About)
+13. [References](#ref)
 
 <a name="description"></a>
 ## Description
-For this project, I implemented the Kmeans as well as the kmeans++ algorithm from scratch. I used five data sets to showcase some applications and results of those algorithms. Further, after uncovering the drawbacks of Kmeans, I implemented a ‘Spectral clustering’ using the random forest (RF) technique paired with kmeans++ to overcome the ‘discontinuity of clusters’ issue. Lastly, I addressed some limitations and possible improvements for future research reference.
+For this project, I implemented various feature importance algorithms and explored how to select features in a model. I used two data sets to showcase both the regression and classification scenarios of those algorithms. Further, I compared those algorithms and developed an automatic feature selection algorithm. Finally, to support visual evidence of feature importances, I used bootstrapped strategy and derived statistical results of variance, standard deviation, and p-values of importance of features.
 
 
 <a name="Workflow"></a>
 ## Workflow:
-<a name="km"></a>
-##### 1. Kmeans
-> Procedure:
+> About `noise` column:
 
-1. Initialize centroids꞉
-Randomly initialize k number of data points from the original X data. The number of k depends on how many clusters we want to end up with.
+For development and demonstration purposes, I will use the `Boston housing` dataset first. Here 'Y' will be the house pricing and 'X' will be the rest of the features.
 
-2. Compute distance꞉
-Here I used Euclidean distance to measure the distance from each of the remaining data points to each of the centroids we initialized in step 1, assigning each of the remaining data points to the ‘closest ’ centroids.
+In order to have a baseline for 'sanity check', I added a Gaussian noise column. Theoretically, if we got any feature's importance below the noise column's importance, those features are not convincing enough to be considered important, and we should be able to drop them just as we can drop the 'noise' column without risk of losing too much (if any) predicting power.
 
-3. Update centroids꞉
-Within each cluster, compute the average distance of all the data points to that centroid FEATURE WISE. This average distance will be the new centroids’ ‘coordinate’ in that cluster. Intuitively speaking, this means we are correcting the centroids to be the ‘center’ of that cluster. This means our final centroids will most likely not be members of the dataset. The reason we picked data points from the dataset as initial centroids is simply to assign a starting point.
+> About `StandardScaler`:
 
-4. Reassign data point
-Finally, compute distance, reassign data points according to the new centroids we updated in step 3, update centroids. Iterate the above process until the centroids’ ‘coordinates’ don’t change any more.
+Further, some of the algorithms such as PCA, require data in different dimensions to have the same scale, thus I used sklearn's StandardScaler to transform X first and then fed it into all algorithms so that we can do a fair comparison among the performances.
 
-ISSUES:
-> Each rounds’ initial centroids are different due to the mechanism of random initialization. This goes without saying, but the algorithm produces slightly different final centroids, labels, and clusters. The good news is all the final norms are 0, which means those clusters make perfect sense in each of their own round’s ‘world’.
+<a name="ssrc"></a>
+##### 1. Spearman's rank correlation coefficient
+The simplest technique to identify important regression features is to rank them by their Spearman's rank correlation coefficient; the feature with the largest coefficient is taken to be the most important. This method is measuring single-feature relevance importance and works well for independent features, but suffers in the presence of codependent features. Groups of features with similar relationships to the response variable receive the same or similar ranks, even though just one should be considered important.
 
 
 <a name="km+"></a>
