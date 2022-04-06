@@ -43,21 +43,14 @@ Further, some of the algorithms such as PCA, require data in different dimension
 ##### 1. Spearman's rank correlation coefficient
 The simplest technique to identify important regression features is to rank them by their Spearman's rank correlation coefficient; the feature with the largest coefficient is taken to be the most important. This method is measuring single-feature relevance importance and works well for independent features, but suffers in the presence of codependent features. Groups of features with similar relationships to the response variable receive the same or similar ranks, even though just one should be considered important.
 
+![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/speaman1.png)
+![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/spearnman2.png)
 
-<a name="km+"></a>
-##### 2. Kmeans ++
+<a name="lcf"></a>
+##### 2. Linear coef featimp
 
-> Procedure:
+The fundamental difference between the two correlation coefficients is that the Pearson coefficient works with a linear relationship between the two variables whereas the Spearman coefficient works with monotonic relationships (the variables tend to change together, but not necessarily at a constant rate). The Spearman correlation coefficient is based on the ranked values for each variable rather than the raw data.
 
-1. Initialize centroids꞉
-Randomly initialize k number of data points from the original X data. The number of k depends on how many clusters we want to end up with.
-2. Compute distance꞉
-Here I used Euclidean distance to measure the distance from each of the remaining data points to each of the centroids we initialized in step 1, assigning each of the remaining data points to the ‘closest ’ centroids.
-3. Update centroids꞉
-Within each cluster, compute the average distance of all the data points to that centroid FEATURE WISE. This average distance will be the new centroids’ ‘coordinate’ in that cluster. Intuitively speaking, this means we are correcting the centroids to be the ‘center’ of that cluster. This means our final centroids will most likely not be members of the dataset. The reason we picked data points from the dataset as initial centroids is simply to assign a starting point.
-
-4. Reassign data point
-Finally, compute distance, reassign data points according to the new centroids we updated in step 3, update centroids. Iterate the above process until the centroids’ ‘coordinates’ don’t change any more.
 
 <a name="app"></a>
 ##### 3. Applications
