@@ -139,27 +139,23 @@ Where:
 <a name="class"></a>
 ## DescrWine quality Data(classification)iption
 
-![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/var2.png)
-![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/var2.png)
-![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/var2.png)
-![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/var2.png)
+![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/wine1.png)
+![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/wine2.png)
+![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/wine3.png)
+![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/wine4.png)
 
 <a name="Dataset"></a>
 ## Dataset
 
-* `Synthetic data set`: A small synthetic data that has a shape of 16*1
-* `Multi-dimension data (Circle data 500*2)`: from sklearn.datasets.make_circles
-* `Breast cancer`: from sklearn.datasets.load_breast_cancer
-* `north-africa-1940s-grey` and `parrt-vancouver.jpg`: from Professor [Terence Parr](https://en.wikipedia.org/wiki/Terence_Parr)
-
-<a name="summary"></a>
+* `Boston housing`: regression case, from shap.datasets.boston()
+* `winequality-white`: binary classification case
 
 
 <a name="About"></a>
 ## About
-+ [`Jupyter Notebook file`](https://github.com/victorlifan/kmeans/blob/main/kmeans.ipynb): workspace where I performed and tested the works.
-+ [`kmeans.py`](https://github.com/victorlifan/kmeans/blob/main/kmeans.py): modularized support functions
-* [`kmeans.pdf`](https://github.com/victorlifan/kmeans/blob/main/kmeans.pdf): pdf presentation
++ [`Jupyter Notebook file`](https://github.com/victorlifan/feature_importance/blob/main/featimp.ipynb): workspace where I performed and tested the works.
++ [`featimp.py`](https://github.com/victorlifan/feature_importance/blob/main/featimp.py): modularized support functions
+* [`featimp.pdf`](https://github.com/victorlifan/feature_importance/blob/main/featimp.pdf): pdf presentation
 + [`img`](https://github.com/victorlifan/kmeans/tree/main/img): png files were used in this project.
 
 <a name="Software"></a>
@@ -169,17 +165,19 @@ Where:
 + Python 3.9
 >   * Numpy
 >   * Pandas
+>	* scipy
 >   * Matplotlib
 >   * Seaborn
 >   * sklearn
 >   * statistics
 >   * PIL
 >   * tqdm
+>	* SHAP
+>	* XGBoost
 
 
 <a name="ref"></a>
 ## References
-* [K-Means Clustering: From A to Z](https://towardsdatascience.com/k-means-clustering-from-a-to-z-f6242a314e9a)
-* [ML | K-means++ Algorithm](https://www.geeksforgeeks.org/ml-k-means-algorithm/)
-* [Image Segmentation using K Means Clustering](https://www.geeksforgeeks.org/image-segmentation-using-k-means-clustering/)
-* [Breiman's website](https://www.stat.berkeley.edu/~breiman/RandomForests/cc_home.htm#prox)
+* [Clearly explained: Pearson V/S Spearman Correlation Coefficient](https://towardsdatascience.com/clearly-explained-pearson-v-s-spearman-correlation-coefficient-ada2f473b8)
+* [Information Driven Healthcare: Machine Learning course](https://www.robots.ox.ac.uk/~davidc/pubs/CDT-B1-Lecture12-MondayWeek2-FeatureSelection2.pdf)
+* [Beware Default Random Forest Importances](https://explained.ai/rf-importance/index.html)
