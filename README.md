@@ -101,6 +101,8 @@ To work around this codependent problem, we can break the potential connection b
 
 <a name="com"></a>
 ## Comparing strategies
+Comparing a model's performance evaluated by MAE on the same number of most important features picked by different methods, see which method's selection result the lowest MAE. Do it on three different models just to have a fair comparision.
+
 According to the three predicting models I tried, PCA underperformed all other algorithms in terms of the number of top k most important features needed. On the other hand, the ‘Permutation’ approach shows a really promising result: even with the same number of topmost important features, permutation always has the lowest MAE.
 
 ![alt test](https://raw.githubusercontent.com/victorlifan/feature_importance/main/img/com1.png)
